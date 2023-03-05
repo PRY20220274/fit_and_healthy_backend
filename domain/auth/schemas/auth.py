@@ -4,6 +4,7 @@ from extensions.exception_extension import BadRequestException
 from extensions.database_extension import ma
 from domain.accounts.models.user import User
 from datetime import datetime
+from domain.commons.util import format_date_to_show
 
 class LoginSchema(ma.Schema):
     class Meta:
@@ -67,7 +68,7 @@ class RegisterSchema(ma.Schema):
     def get_data(self, data, **kwargs):
         del data['password']
         birth_date = data['birth_date']
-        data['birth_date'] = datetime.strptime(birth_date, "%Y-%m-%d").strftime("%d/%m/%Y")
+        data['birth_date'] = format_date_to_show(birth_date)
         return data
 
     @post_load

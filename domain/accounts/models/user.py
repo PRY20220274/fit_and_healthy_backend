@@ -1,5 +1,5 @@
 from extensions.database_extension import db, BaseModel
-from datetime import datetime
+from domain.commons.util import get_datetime, format_date_to_save
 
 class User(db.Model, BaseModel):
     __tablename__ = 'users'
@@ -18,6 +18,6 @@ class User(db.Model, BaseModel):
         self.last_name = last_name
         self.email = email
         self.password = password
-        self.birth_date = datetime.strptime(birth_date, "%d/%m/%Y").strftime("%Y-%m-%d")
+        self.birth_date = format_date_to_save(birth_date)
         self.state = 1
-        self.created_at = datetime.utcnow()
+        self.created_at = get_datetime()
