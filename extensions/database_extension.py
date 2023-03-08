@@ -3,7 +3,6 @@ from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
 from flask_seeder import FlaskSeeder
 
-
 db = SQLAlchemy()
 ma = Marshmallow()
 seeder = FlaskSeeder()
@@ -44,7 +43,6 @@ class BaseModel:
     @classmethod
     def get_one(cls, **kwargs):
         return cls.query.filter_by(**kwargs).first()
-
 
 def register_database(app):
     db.init_app(app)

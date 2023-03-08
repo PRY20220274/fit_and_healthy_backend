@@ -20,7 +20,7 @@ def check_password(value1, value2):
     return response
 
 
-def access_token(identity):
-    response = create_access_token(identity=identity, expires_delta=datetime.timedelta(hours=5))
+def access_token(id):
+    response = create_access_token(identity=id, expires_delta=datetime.timedelta(hours=5))
     return response
 

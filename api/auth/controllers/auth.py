@@ -26,6 +26,7 @@ class LoginResource(Resource):
         if not user:
             return user_not_found()
         if check_password(user.password, password):
+            print(user.id, flush=True)
             token = access_token(user.id)
             return get_token(token)
         return wrong_credentials()

@@ -18,3 +18,6 @@ def format_date_to_show(date):
 def get_user():
     user = current_user
     return user
+
+def get_param(params, search):
+    return params.get(search) if params.get(search) else None
