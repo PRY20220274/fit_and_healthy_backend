@@ -8,13 +8,13 @@ def get_param(params, search):
 def get_variable(data, search, default):
     return data.get(search) if data.get(search) else default
 
-def find_user(id):
+def get_user(id):
     user = User.get_by_id(id)
     if user:
         return user
     else:
         raise NotFoundException('user', 'id', id)
 
-def find_user_email(email):
+def get_user_email(email):
     user = User.get_one(**{'email': email})
     return user

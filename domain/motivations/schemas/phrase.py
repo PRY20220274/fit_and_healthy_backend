@@ -1,7 +1,5 @@
-from marshmallow import post_load, validates_schema
 from extensions.database_extension import ma
 from extensions.exception_extension import BadRequestException
-from domain.motivations.schemas.motivation_type import MotivationTypeSchema
 from domain.motivations.models.phrase import Phrase
 
 

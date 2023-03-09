@@ -16,5 +16,4 @@ class Goal(db.Model, BaseModel):
 
     def __init__(self, description):
         self.description = description
-        self.type_id = type_id
         self.created_at = get_datetime()

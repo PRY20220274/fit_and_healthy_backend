@@ -4,7 +4,7 @@ from api.auth.adapters.docs.auth import auth_namespace
 from api.auth.adapters.requests.auth import login_request, register_request
 from api.auth.adapters.responses.auth import login_response, login_unauthorized, register_response
 from domain.auth.services.auth import check_password, access_token
-from domain.accounts.services.user import find_user_email
+from domain.accounts.services.user import get_user_email
 from domain.auth.schemas.auth import LoginSchema, RegisterSchema
 from domain.commons.responses import get_token, user_not_found, wrong_credentials, user_exists
 
@@ -22,11 +22,10 @@ class LoginResource(Resource):
         data = self.schema.load(request.get_json())
         email = data.get('email')
         password = data.get('password')
-        user = find_user_email(email)
+        user = get_user_email(email)
         if not user:
             return user_not_found()
         if check_password(user.password, password):
-            print(user.id, flush=True)
             token = access_token(user.id)
             return get_token(token)
         return wrong_credentials()
@@ -44,7 +43,7 @@ class RegisterResource(Resource):
     def post(self):
         data = request.get_json()
         email = data.get('email')
-        user = find_user_email(email)
+        user = get_user_email(email)
         if not user:
             user = self.schema.load(data)
             result = self.schema.dump(user.save())
