@@ -21,3 +21,6 @@ def get_user():
 
 def get_param(params, search):
     return params.get(search) if params.get(search) else None
+
+def get_variable(data, search, default):
+    return data.get(search) if data.get(search) else default

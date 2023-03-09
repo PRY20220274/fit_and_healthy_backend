@@ -1,12 +1,6 @@
 from domain.accounts.models.user import User
+from domain.commons.util import get_variable
 from extensions.exception_extension import NotFoundException
-
-
-def get_param(params, search):
-    return int(params.get(search)) if params.get(search) else None
-
-def get_variable(data, search, default):
-    return data.get(search) if data.get(search) else default
 
 def get_user(id):
     user = User.get_by_id(id)
@@ -18,3 +12,10 @@ def get_user(id):
 def get_user_email(email):
     user = User.get_one(**{'email': email})
     return user
+
+def update_user(user, data):
+    user.first_name = get_variable(data, 'first_name', user.first_name)
+    user.last_name = get_variable(data, 'last_name', user.last_name)
+    user.birth_date = get_variable(data, 'birth_date', user.birth_date)
+    user.format_date()
+    return user.update()

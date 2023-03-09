@@ -21,3 +21,6 @@ class User(db.Model, BaseModel):
         self.birth_date = format_date_to_save(birth_date)
         self.state = 1
         self.created_at = get_datetime()
+
+    def format_date(self):
+        self.birth_date = format_date_to_save(self.birth_date)
