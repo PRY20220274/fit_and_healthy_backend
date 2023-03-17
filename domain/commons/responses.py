@@ -35,3 +35,12 @@ def user_exists():
         }, 
         202
     )
+
+
+def get_access():
+    return make_response(
+        {
+            'message': 'Access of the google account of the user were saved'
+        }, 
+        201
+    )

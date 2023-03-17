@@ -24,3 +24,6 @@ def get_param(params, search):
 
 def get_variable(data, search, default):
     return data.get(search) if data.get(search) else default
+
+def get_fog():
+    return 'http://localhost:4040/api'
