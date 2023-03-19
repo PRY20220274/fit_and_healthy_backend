@@ -10,3 +10,7 @@ url_response = iot_namespace.model('UrlResponse', {
 access_response = iot_namespace.model('AccessResponse', {
     'message': fields.String,
 })
+
+iot_response = iot_namespace.model('IotResponse', {
+    'message': fields.String,
+})
