@@ -1,5 +1,5 @@
 from domain.fit.models.access import Access
-from domain.fit.models.physical_data import PhysicalData
+from domain.fit.services.physical_data import create_physical_data
 
 def save_access(data, user_id):
     exists = get_access_user(user_id)
@@ -34,16 +34,3 @@ def save_iot_data(data, user_id):
     physical_data = create_physical_data(data, user_id)
     created = physical_data.save()
     created.commit()
-
-
-def create_physical_data(data, user_id):
-    physical_data = PhysicalData(
-        data['steps'], 
-        data['calories'], 
-        data['cardio_points'], 
-        data['heart_rate'], 
-        data['breathing_rate'],
-        data['kilometers_traveled']
-    )
-    physical_data.user_id = user_id
-    return physical_data

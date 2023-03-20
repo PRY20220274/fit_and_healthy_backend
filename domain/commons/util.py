@@ -15,15 +15,23 @@ def format_date_to_show(date):
     return date
 
 
+def format_datetime_to_show(date):
+    date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S").strftime("%d/%m/%Y %H:%M:%S")
+    return date
+
+
 def get_user():
     user = current_user
     return user
 
+
 def get_param(params, search):
     return params.get(search) if params.get(search) else None
 
+
 def get_variable(data, search, default):
     return data.get(search) if data.get(search) else default
+
 
 def get_fog():
     return 'http://localhost:4040/api'
