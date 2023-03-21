@@ -16,7 +16,7 @@ def format_date_to_show(date):
 
 
 def format_datetime_to_show(date):
-    date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S").strftime("%d/%m/%Y %H:%M:%S")
+    date = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S").strftime("%d/%m/%Y %H:%M:%S")
     return date
 
 

@@ -11,15 +11,19 @@ class PhysicalData(db.Model, BaseModel):
     heart_rate = db.Column(db.Integer)
     breathing_rate = db.Column(db.Integer)
     kilometers_traveled = db.Column(db.Integer)
+    width = db.Column(db.Integer)
+    height = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship("User")
 
-    def __init__(self, steps, calories, cardio_points, heart_rate, breathing_rate, kilometers_traveled):
+    def __init__(self, steps, calories, cardio_points, heart_rate, breathing_rate, kilometers_traveled, width, height):
         self.steps = steps
         self.calories = calories
         self.cardio_points = cardio_points
         self.heart_rate = heart_rate
         self.breathing_rate = breathing_rate
         self.kilometers_traveled = kilometers_traveled
+        self.width = width
+        self.height = height
         self.created_at = get_datetime()
