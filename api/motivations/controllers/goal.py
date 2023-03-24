@@ -26,8 +26,6 @@ class GoalListResource(Resource):
     @goal_namespace.expect(goal_request)
     @goal_namespace.response(code=400, description='Bad Request')
     @goal_namespace.response(code=201, description='Success', model=goal_response)
-    @goal_namespace.doc(params={'temperature_id': 'Temperature Id'})
-    @goal_namespace.doc(params={'oxygen_id': 'Oxygen Id'})
     def post(self):
         data, frequency_id, type_id = clean_goal(request.get_json())
         body = self.schema.load(data)

@@ -35,3 +35,9 @@ def get_variable(data, search, default):
 
 def get_fog():
     return 'http://localhost:4040/api'
+
+
+def get_hour():
+    now = datetime.now()
+    actual_hour = now.strftime("%H:%M:%S")
+    return actual_hour
