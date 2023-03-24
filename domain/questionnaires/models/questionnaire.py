@@ -1,5 +1,4 @@
 from extensions.database_extension import db, BaseModel
-from domain.commons.util import get_datetime, format_date_to_save
 from sqlalchemy.dialects.mysql import TIME
 
 class Questionnaire(db.Model, BaseModel):
