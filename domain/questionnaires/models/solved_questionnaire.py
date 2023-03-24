@@ -12,6 +12,5 @@ class SolvedQuestionnaire(db.Model, BaseModel):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship("User")
 
-    def __init__(self, score, created_at):
-        self.score = score
+    def __init__(self):
         self.created_at = get_datetime()

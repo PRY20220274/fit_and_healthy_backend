@@ -18,3 +18,4 @@ class QuestionnaireSchema(ma.Schema):
         questions = obj.questions
         schema = QuestionSchema(many=True)
         return schema.dump(questions)
+        

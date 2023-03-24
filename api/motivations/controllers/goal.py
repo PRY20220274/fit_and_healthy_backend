@@ -8,7 +8,6 @@ from domain.motivations.services.goal import get_goals_by_user, clean_goal, save
 from domain.commons.util import get_user
 
 @goal_namespace.route('')
-@goal_namespace.doc(params={'user': 'User Id'})
 class GoalListResource(Resource):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
