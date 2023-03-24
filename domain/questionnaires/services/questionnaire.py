@@ -1,5 +1,7 @@
 from domain.questionnaires.models.questionnaire import Questionnaire
 from domain.commons.util import get_hour
+from extensions.exception_extension import NotFoundException
+
 
 def get_questionnaire_by_category(category_id):
     hour = get_hour()
@@ -9,6 +11,7 @@ def get_questionnaire_by_category(category_id):
         Questionnaire.category_id == category_id
     ).first()
     return questionnaire
+
 
 def get_questionnaire(id):
     questionnaire = Questionnaire.get_by_id(id)

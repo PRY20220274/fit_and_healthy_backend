@@ -18,8 +18,8 @@ class SolvedQuestionnaireResource(Resource):
     @solved_namespace.response(code=400, description='Bad Request')
     @solved_namespace.response(code=201, description='Success', model=solved_response)
     def post(self):
-        questionnaire_id = build_questionnaire(request.get_json())
+        questionnaire, answers = build_questionnaire(request.get_json())
         user = get_user()
-        solved = save_solved(user.id, questionnaire_id)
+        solved = save_solved(user.id, questionnaire.id, answers)
         response = self.schema.dump(solved)
         return response, 201

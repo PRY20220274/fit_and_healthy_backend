@@ -26,10 +26,10 @@ class GoalListResource(Resource):
     @goal_namespace.response(code=400, description='Bad Request')
     @goal_namespace.response(code=201, description='Success', model=goal_response)
     def post(self):
-        data, frequency_id, type_id = clean_goal(request.get_json())
+        data, frequency, type = clean_goal(request.get_json())
         body = self.schema.load(data)
         user = get_user()
-        goal = save_goal(body, user.id, frequency_id, type_id)
+        goal = save_goal(body, user.id, frequency.id, type.id)
         response = self.schema.dump(goal)
         return response, 201
 
