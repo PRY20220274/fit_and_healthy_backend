@@ -57,7 +57,6 @@ class IotResource(Resource):
         access = get_access_user(user.id)
         url = f'{get_fog()}/fit'
         response = requests.post(url, json=access.to_dict())
-        print(response, flush=True)
         if response.status_code == 200:
             save_iot_data(response.json(), user.id)
             return iot_data_saved()

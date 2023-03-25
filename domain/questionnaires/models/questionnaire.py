@@ -13,6 +13,7 @@ class Questionnaire(db.Model, BaseModel):
     category = db.relationship("QuestionnaireCategory")
     questions = db.relationship("Question", secondary=lambda: questionnaries_questions, lazy='dynamic',
                                             backref=backref("questionnaires", lazy='dynamic'))
+    scales = db.relationship('Scale', lazy=True)                                        
 
     def __init__(self, name, start_hour, end_hour, category_id):
         self.name = name
