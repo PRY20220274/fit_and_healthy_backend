@@ -11,6 +11,7 @@ class SolvedQuestionnaire(db.Model, BaseModel):
     questionnaire = db.relationship("Questionnaire")
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship("User")
+    details = db.relationship("SolvedQuestionnaireDetail", back_populates="solved_questionnaire")
 
     def __init__(self):
         self.created_at = get_datetime()

@@ -8,8 +8,8 @@ class SolvedQuestionnaireDetail(db.Model, BaseModel):
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'), primary_key=True)
     alternative_id = db.Column(db.Integer, db.ForeignKey('alternatives.id'), primary_key=True)
     solved_questionnaire = db.relationship("SolvedQuestionnaire", back_populates="details")
-    question = db.relationship("Question", back_populates="details")
-    alternative = db.relationship("Alternative", back_populates="details")
+    question = db.relationship("Question")
+    alternative = db.relationship("Alternative")
 
     def __init__(self, solved_questionnaire_id, question_id, alternative_id):
         self.solved_questionnaire_id = solved_questionnaire_id

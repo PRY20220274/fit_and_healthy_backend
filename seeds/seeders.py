@@ -4,6 +4,9 @@ from domain.motivations.models.motivation_type import MotivationType
 from domain.motivations.models.phrase import Phrase
 from domain.questionnaires.models.questionnaire_category import QuestionnaireCategory
 from domain.questionnaires.models.questionnaire import Questionnaire
+from domain.questionnaires.models.question import Question
+from domain.questionnaires.models.alternative import Alternative
+from domain.questionnaires.models.scale import Scale
 
 class FrequencySeeder(Seeder):
     def run(self):
@@ -107,3 +110,174 @@ class QuestionnaireSeeder(Seeder):
             if not exists:
                 questionnaire = Questionnaire(name, start_hour, end_hour, category_id)
                 self.db.session.add(questionnaire)
+
+
+class QuestionSeeder(Seeder):
+    def run(self):
+        values = [
+            {
+                'description': 'En el desayuno comiste…', 
+            },
+            {
+                'description': '¿Qué tipo de cereales consumiste?', 
+            },
+            {
+                'description': 'Las proteínas son muy importantes, cuéntanos cuales comiste hoy…', 
+            },
+            {
+                'description': '¿Pudiste comer grasas saludables?', 
+            },
+        ]
+        for index, value in enumerate(values):
+            description = value.get('description')
+            exists = Question.get_one(**{'description': description})
+            if not exists:
+                question = Question(description)
+                self.db.session.add(question)
+
+
+class AlternativeSeeder(Seeder):
+    def run(self):
+        values = [
+            {
+                'description': 'Frutas(ensalada o fruta sola)',
+                'score': 2,
+                'question_id': 1
+            },
+            {
+                'description': 'Verduras(ensalada fresca o cocida)',
+                'score': 1,
+                'question_id': 1
+            },
+            {
+                'description': 'Ninguna',
+                'score': 0,
+                'question_id': 1
+            },
+            {
+                'description': 'Arroz',
+                'score': 1,
+                'question_id': 2
+            },
+            {
+                'description': 'Avena',
+                'score': 4,
+                'question_id': 2
+            },
+            {
+                'description': 'Trigo',
+                'score': 2,
+                'question_id': 2
+            },
+            {
+                'description': 'Quinoa',
+                'score': 5,
+                'question_id': 2
+            },
+            {
+                'description': 'Kiwicha',
+                'score': 6,
+                'question_id': 2
+            },
+            {
+                'description': 'Cañihua',
+                'score': 3,
+                'question_id': 2
+            },
+            {
+                'description': 'Ninguno',
+                'score': 0,
+                'question_id': 2
+            },
+            {
+                'description': 'Huevo cocido',
+                'score': 2,
+                'question_id': 3
+            },
+            {
+                'description': 'Huevo frito',
+                'score': 1,
+                'question_id': 3
+            },
+            {
+                'description': 'Yogurt',
+                'score': 3,
+                'question_id': 3
+            },
+            {
+                'description': 'Queso',
+                'score': 4,
+                'question_id': 3
+            },
+            {
+                'description': 'Ninguno',
+                'score': 0,
+                'question_id': 3
+            },
+            {
+                'description': 'Almendras',
+                'score': 3,
+                'question_id': 4
+            },
+            {
+                'description': 'Nueces',
+                'score': 4,
+                'question_id': 4
+            },
+            {
+                'description': 'Pistacho',
+                'score': 2,
+                'question_id': 4
+            },
+            {
+                'description': 'Castañas',
+                'score': 1,
+                'question_id': 4
+            },
+            {
+                'description': 'Ninguno',
+                'score': 0,
+                'question_id': 4
+            },
+        ]
+        for index, value in enumerate(values):
+            description = value.get('description')
+            score = value.get('score')
+            question_id = value.get('question_id')
+            exists = Alternative.get_one(**{'description': description})
+            if not exists:
+                alternative = Alternative(description, score, question_id)
+                self.db.session.add(alternative)
+
+
+class AlternativeSeeder(Seeder):
+    def run(self):
+        values = [
+            {
+                'description': 'Deberías aumentar el consumo de calorías.',
+                'min': 0,
+                'max': 16,
+                'questionnaire_id': 7
+            },
+            {
+                'description': 'Tu consumo es balanceado, sigue asi.',
+                'min': 17,
+                'max': 32,
+                'questionnaire_id': 7
+            },
+            {
+                'description': 'Parece que estás consumiendo calorías extras y empieza a balancear tu comida. Un buen desayuno consta de:',
+                'min': 33,
+                'max': 48,
+                'questionnaire_id': 7
+            },
+        ]
+        for index, value in enumerate(values):
+            description = value.get('description')
+            min = value.get('min')
+            max = value.get('max')
+            questionnaire_id = value.get('questionnaire_id')
+            exists = Scale.get_one(**{'description': description})
+            if not exists:
+                scale = Scale(description, min, max, questionnaire_id)
+                self.db.session.add(scale)

@@ -8,6 +8,7 @@ class Alternative(db.Model, BaseModel):
     score = db.Column(db.Integer, nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
 
-    def __init__(self, description, score):
+    def __init__(self, description, score, question_id):
         self.description = description
         self.score = score
+        self.question_id = question_id

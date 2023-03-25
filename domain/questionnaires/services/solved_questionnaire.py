@@ -27,7 +27,7 @@ def build_questionnaire(data):
     else:
         errors['questionnaire'] = 'Questionnaire is required'
     
-    if answer_ids.len() != 0:
+    if len(answer_ids) != 0:
         answers = build_answers(answer_ids)
     else:
         errors['answers'] = 'Answers are required'
@@ -39,7 +39,6 @@ def build_questionnaire(data):
 
 
 def save_solved(user_id, questionnaire_id, answers):
-
     solved = SolvedQuestionnaire()
     solved.user_id = user_id
     solved.questionnaire_id = questionnaire_id
@@ -54,8 +53,11 @@ def save_solved(user_id, questionnaire_id, answers):
     created.commit()
     
     for answer in answers:
-        score = score + answer.alternative.score
-        detail = SolvedQuestionnaireDetail(created.id, answer.question.id, answer.alternative.id)
+        question = answer.get('question')
+        alternative = answer.get('alternative')
+
+        score = score + alternative.score
+        detail = SolvedQuestionnaireDetail(created.id, question.id, alternative.id)
         detail.save()
         detail.commit()
     
