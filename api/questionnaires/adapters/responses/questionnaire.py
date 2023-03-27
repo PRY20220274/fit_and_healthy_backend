@@ -16,8 +16,6 @@ question_response = questionnaire_namespace.model('QuestionResponse', {
 questionnaire_response = questionnaire_namespace.model('QuestionnarieResponse', {
     'id': fields.Integer,
     'name': fields.String,
-    'start_hour': fields.String,
-    'end_hour': fields.String,
     'category': fields.String,
     'questions': fields.List(fields.Nested(question_response), description='Lista de preguntas')
 })

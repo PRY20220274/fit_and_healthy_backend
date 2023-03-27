@@ -3,10 +3,13 @@ from domain.motivations.models.frequency import Frequency
 from domain.motivations.models.motivation_type import MotivationType
 from domain.motivations.models.phrase import Phrase
 from domain.questionnaires.models.questionnaire_category import QuestionnaireCategory
+from domain.recommendations.models.frequency_food import FrequencyFood
 from domain.questionnaires.models.questionnaire import Questionnaire
 from domain.questionnaires.models.question import Question
 from domain.questionnaires.models.alternative import Alternative
 from domain.questionnaires.models.scale import Scale
+from domain.recommendations.models.food_recommendation import FoodRecommendation
+from domain.recommendations.models.physical_recommendation import PhysicalRecommendation
 
 class FrequencySeeder(Seeder):
     def run(self):
@@ -61,54 +64,74 @@ class QuestionnaireCategorySeeder(Seeder):
                 self.db.session.add(category)
 
 
+class FrequencyFoodSeeder(Seeder):
+    def run(self):
+        values = [
+            {
+                'name': 'Desayuno',
+                'start_hour': '00:00:00', 
+                'end_hour': '11:00:00'
+            },
+            {
+                'name': 'Almuerzo',
+                'start_hour': '11:00:00', 
+                'end_hour': '18:00:00'
+            },
+            {
+                'name': 'Cena',
+                'start_hour': '18:00:00', 
+                'end_hour': '24:00:00'
+            }
+        ]
+        for index, value in enumerate(values):
+            name = value.get('name')
+            exists = FrequencyFood.get_one(**{'name': name})
+            if not exists:
+                frequency_food = FrequencyFood(name)
+                self.db.session.add(frequency_food)
+
+
 class QuestionnaireSeeder(Seeder):
     def run(self):
         values = [
             {
                 'name': 'Cuestionario de alimentos comestibles desayuno', 
-                'start_hour': '00:00:00', 
-                'end_hour': '11:00:00',
-                'category_id': 1
+                'category_id': 1,
+                'frequency_id': 1,
             },
             {
                 'name': 'Cuestionario de alimentos comestibles almuerzo', 
-                'start_hour': '11:00:00', 
-                'end_hour': '18:00:00',
-                'category_id': 1
+                'category_id': 1,
+                'frequency_id': 2
             },
             {
                 'name': 'Cuestionario de alimentos comestibles cena', 
-                'start_hour': '18:00:00', 
-                'end_hour': '24:00:00',
-                'category_id': 1
+                'category_id': 1,
+                'frequency_id': 3
             },
             {
                 'name': 'Cuestionario de liquidos desayuno', 
-                'start_hour': '00:00:00', 
-                'end_hour': '11:00:00',
-                'category_id': 2
+                'category_id': 2,
+                'frequency_id': 1,
             },
             {
                 'name': 'Cuestionario de liquidos almuerzo', 
-                'start_hour': '11:00:00', 
-                'end_hour': '18:00:00',
-                'category_id': 2
+                'category_id': 2,
+                'frequency_id': 2
             },
             {
                 'name': 'Cuestionario de liquidos cena', 
-                'start_hour': '18:00:00', 
-                'end_hour': '24:00:00',
-                'category_id': 2
+                'category_id': 2,
+                'frequency_id': 3
             },
         ]
         for index, value in enumerate(values):
             name = value.get('name')
-            start_hour = value.get('start_hour')
-            end_hour = value.get('end_hour')
             category_id = value.get('category_id')
+            frequency_id = value.get('frequency_id')
             exists = Questionnaire.get_one(**{'name': name})
             if not exists:
-                questionnaire = Questionnaire(name, start_hour, end_hour, category_id)
+                questionnaire = Questionnaire(name, frequency_id, category_id)
                 self.db.session.add(questionnaire)
 
 

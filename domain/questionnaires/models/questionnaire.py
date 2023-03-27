@@ -1,5 +1,4 @@
 from extensions.database_extension import db, BaseModel
-from sqlalchemy.dialects.mysql import TIME
 from sqlalchemy.orm import backref
 
 class Questionnaire(db.Model, BaseModel):
@@ -7,18 +6,17 @@ class Questionnaire(db.Model, BaseModel):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255), nullable=False)
-    start_hour = db.Column(TIME(), nullable=False)
-    end_hour = db.Column(TIME(), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('questionnaire_categories.id'))
     category = db.relationship("QuestionnaireCategory")
+    frequency_id = db.Column(db.Integer, db.ForeignKey('frequency_food.id'))
+    frequency = db.relationship("FrequencyFood")
     questions = db.relationship("Question", secondary=lambda: questionnaries_questions, lazy='dynamic',
                                             backref=backref("questionnaires", lazy='dynamic'))
     scales = db.relationship('Scale', lazy=True)                                        
 
-    def __init__(self, name, start_hour, end_hour, category_id):
+    def __init__(self, name, frequency_id, category_id):
         self.name = name
-        self.start_hour = start_hour
-        self.end_hour = end_hour
+        self.frequency_id = frequency_id
         self.category_id = category_id
 
 

@@ -2,7 +2,7 @@ from flask_jwt_extended import current_user
 from datetime import datetime
 
 def get_datetime():
-    date = datetime.utcnow()
+    date = datetime.now()
     return date
 
 def format_date_to_save(date):
@@ -35,6 +35,12 @@ def get_variable(data, search, default):
 
 def get_fog():
     return 'http://localhost:4040/api'
+
+
+def get_date():
+    now = datetime.utcnow()
+    actual_date = now.strftime("%Y-%m-%d")
+    return actual_date
 
 
 def get_hour():

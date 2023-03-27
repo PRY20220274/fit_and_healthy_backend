@@ -80,3 +80,12 @@ def iot_data_saved():
         }, 
         201
     )
+
+
+def questionnaire_not_enable():
+    return make_response(
+        {
+            'message': 'The user already completed the questionnaire'
+        }, 
+        400
+    )
