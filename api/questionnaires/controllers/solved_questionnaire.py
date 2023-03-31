@@ -20,6 +20,6 @@ class SolvedQuestionnaireResource(Resource):
     def post(self):
         questionnaire, answers = build_questionnaire(request.get_json())
         user = get_user()
-        solved = save_solved(user.id, questionnaire.id, answers)
+        solved = save_solved(user.id, questionnaire.id, questionnaire.frequency_id, answers)
         response = self.schema.dump(solved)
         return response, 201

@@ -10,7 +10,8 @@ class FoodRecommendation(db.Model, BaseModel):
     frequency_id = db.Column(db.Integer, db.ForeignKey('frequency_food.id'))
     frequency = db.relationship("FrequencyFood")
 
-    def __init__(self, description, min, max):
+    def __init__(self, description, min, max, frequency_id):
         self.description = description
         self.min = min
         self.max = max
+        self.frequency_id = frequency_id

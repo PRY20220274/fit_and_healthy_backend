@@ -3,6 +3,7 @@ from domain.questionnaires.models.solved_questionnaire_detail import SolvedQuest
 from domain.questionnaires.services.questionnaire import get_questionnaire
 from domain.questionnaires.services.question import get_question
 from domain.questionnaires.services.alternative import get_alternative
+from domain.recommendations.services.food_recommendation import add_recommendation_to_user
 from extensions.exception_extension import BadRequestException
 
 
@@ -38,7 +39,7 @@ def build_questionnaire(data):
     return questionnaire, answers
 
 
-def save_solved(user_id, questionnaire_id, answers):
+def save_solved(user_id, questionnaire_id, frequency_id, answers):
     solved = SolvedQuestionnaire()
     solved.user_id = user_id
     solved.questionnaire_id = questionnaire_id
@@ -63,4 +64,5 @@ def save_solved(user_id, questionnaire_id, answers):
     
     created.score = score
     updated = created.update()
+    add_recommendation_to_user(user_id, frequency_id, score)
     return updated

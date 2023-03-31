@@ -1,7 +1,6 @@
 from flask_seeder import Seeder
 from domain.motivations.models.frequency import Frequency
 from domain.motivations.models.motivation_type import MotivationType
-from domain.motivations.models.phrase import Phrase
 from domain.questionnaires.models.questionnaire_category import QuestionnaireCategory
 from domain.recommendations.models.frequency_food import FrequencyFood
 from domain.questionnaires.models.questionnaire import Questionnaire
@@ -29,23 +28,6 @@ class MotivationTypeSeeder(Seeder):
             if not exists:
                 motivation_type = MotivationType(value)
                 self.db.session.add(motivation_type)
-
-
-class PhraseSeeder(Seeder):
-    def run(self):
-        values = [
-            {'title': 'Tu puedes aumentar tu fisico', 'icon': 'happy', 'type_id': 1}, 
-            {'title': 'Estas siguiendo la dieta!!!', 'icon': 'sad', 'type_id': 2}, 
-            {'title': 'Bien hecho!! sigue con esas flexiones', 'icon': 'angry', 'type_id': 1}, 
-        ]
-        for index, value in enumerate(values):
-            title = value.get('title')
-            icon = value.get('icon')
-            type_id = value.get('type_id')
-            exists = Phrase.get_one(**{'title': title})
-            if not exists:
-                phrase = Phrase(title, icon, type_id)
-                self.db.session.add(phrase)
 
 
 class QuestionnaireCategorySeeder(Seeder):
@@ -304,3 +286,54 @@ class AlternativeSeeder(Seeder):
             if not exists:
                 scale = Scale(description, min, max, questionnaire_id)
                 self.db.session.add(scale)
+
+
+class FoodRecommendationSeeder(Seeder):
+    def run(self):
+        values = [
+            {
+                'description': 'La cantidad de calorías consumidas no son suficientes para tu cuerpo. Puedes hacer un batido de fresas con leche y un plátano y  aporta 350 calorías. Un sándwich con pollo, lechuga y tomate aporta 300 calorías.',
+                'min': 0,
+                'max': 3,
+                'frequency_id': 1
+            },
+            {
+                'description': 'Un omelet de espinacas con un pan integral y zumo de naranja es una buena opción,ya que tiene un aporte calórico de 350. Otra buena opción es la leche desnatada con avena, fruta y semillas de chía, nos aporta 380 calorías.',
+                'min': 4,
+                'max': 6,
+                'frequency_id': 1
+            },
+            {
+                'description': 'Estás muy cerca de tener un desayuno balanceado, te falta poco, puedes aumentar unas cuantas calorías con una ensalada de frutas que aporta 200 calorías.',
+                'min': 7,
+                'max': 9,
+                'frequency_id': 1
+            },
+            {
+                'description': 'Los frutos secos, los cereales y los panes integrales contienen fibra, si combinamos ¼ de taza con un vaso de yogurt y unas almendras picadas, nos aseguran 160 calorías. Un jugo de manzana sin azúcar nos da 150 calorías.',
+                'min': 10,
+                'max': 12,
+                'frequency_id': 1
+            },
+            {
+                'description': 'Puedes reducir el consumo de calorías, puedes hacer un yogurt griego con kiwi y arándanos, nos aporta 130 calorías. También tenemos la opción de una tostada con palta y queso, que nos da 150 calorías.',
+                'min': 13,
+                'max': 15,
+                'frequency_id': 1
+            },
+            {
+                'description': 'Una crema de trigo, es una gran opción para el desayuno, nos da 110 Calorías. Podemos  hacer una rebanada mediana de tostada francesa con miel, que nos da 200 calorías.',
+                'min': 16,
+                'max': 18,
+                'frequency_id': 1
+            }
+        ]
+        for index, value in enumerate(values):
+            description = value.get('description')
+            min = value.get('min')
+            max = value.get('max')
+            frequency_id = value.get('frequency_id')
+            exists = FoodRecommendation.get_one(**{'description': description})
+            if not exists:
+                recommendation = FoodRecommendation(description, min, max, frequency_id)
+                self.db.session.add(recommendation)
