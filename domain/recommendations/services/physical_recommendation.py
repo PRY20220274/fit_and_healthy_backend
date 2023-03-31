@@ -13,3 +13,18 @@ def get_today_recommendation(user_id):
             user_id == PhysicalUserRecommendation.user_id
     ).order_by(PhysicalUserRecommendation.created_at.desc()).first()
     return recommendation
+
+
+def get_recommendation(score):
+    recommendation = PhysicalRecommendation.query.filter(
+            score >= PhysicalRecommendation.min,
+            score <= PhysicalRecommendation.max
+    ).first()
+    return recommendation
+
+
+def add_recommendation_to_user(user_id, score):
+    recommendation = get_recommendation(score)
+    created = PhysicalUserRecommendation(user_id, recommendation.id)
+    created.save()
+    created.commit()
