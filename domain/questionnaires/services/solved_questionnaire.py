@@ -62,7 +62,7 @@ def save_solved(user_id, questionnaire_id, frequency_id, answers):
         detail.save()
         detail.commit()
     
+    add_recommendation_to_user(user_id, frequency_id, score)
     created.score = score
     updated = created.update()
-    add_recommendation_to_user(user_id, frequency_id, score)
     return updated

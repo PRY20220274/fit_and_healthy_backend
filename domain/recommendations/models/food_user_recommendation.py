@@ -6,7 +6,7 @@ class FoodUserRecommendation(db.Model, BaseModel):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     created_at = db.Column(db.DateTime, nullable=False)
-    food_recommendation_id = db.Column(db.Integer, db.ForeignKey('food_recommendations.id'))
+    food_recommendation_id = db.Column(db.Integer, db.ForeignKey('food_recommendations.id'), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     food_recommendation = db.relationship("FoodRecommendation")
     user = db.relationship("User")

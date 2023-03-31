@@ -17,7 +17,7 @@ class FoodRecommendationListResource(Resource):
     @food_namespace.response(code=400, description='Bad Request')
     def get(self):
         user = get_user()
-        recommendations = get_recommendations_by_user(user)
+        recommendations = get_recommendations_by_user(user.id)
         response = self.schema.dump(recommendations)
         return response, 200
 
@@ -32,6 +32,6 @@ class FoodRecommendationTodayResource(Resource):
     @food_namespace.response(code=400, description='Bad Request')
     def get(self):
         user = get_user()
-        recommendation = get_today_recommendation(user)
+        recommendation = get_today_recommendation(user.id)
         response = self.schema.dump(recommendation)
         return response, 200
