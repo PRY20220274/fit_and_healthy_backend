@@ -15,16 +15,16 @@ def get_today_recommendation(user_id):
     return recommendation
 
 
-def get_recommendation(score):
+def get_recommendation(calories):
     recommendation = PhysicalRecommendation.query.filter(
-            score >= PhysicalRecommendation.min,
-            score <= PhysicalRecommendation.max
+            calories >= PhysicalRecommendation.min_calories,
+            calories <= PhysicalRecommendation.max_calories
     ).first()
     return recommendation
 
 
-def add_recommendation_to_user(user_id, score):
-    recommendation = get_recommendation(score)
+def add_recommendation_to_user(user_id, calories):
+    recommendation = get_recommendation(score, calories)
     created = PhysicalUserRecommendation(user_id, recommendation.id)
     created.save()
     created.commit()

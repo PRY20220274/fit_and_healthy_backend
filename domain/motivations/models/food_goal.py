@@ -15,7 +15,7 @@ class FoodGoal(Goal):
         'polymorphic_identity': 'food_goal',
     }
 
-    def __init__(self, description, type):
+    def __init__(self, description):
         self.description = description
         self.type = 'food_goal'
         self.created_at = get_datetime()

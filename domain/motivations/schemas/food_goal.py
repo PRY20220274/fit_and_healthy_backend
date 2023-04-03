@@ -29,4 +29,4 @@ class FoodGoalSchema(ma.Schema):
 
     @post_load
     def make_goal(self, data, **kwargs):
-        return Goal(**data)
+        return FoodGoal(**data)

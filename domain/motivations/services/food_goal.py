@@ -2,7 +2,7 @@ from domain.motivations.models.food_goal import FoodGoal
 from domain.motivations.services.objective import get_objective
 from domain.motivations.services.activity import get_activity
 from domain.accounts.services.user import get_user_age
-from extensions.exception_extension import NotFoundException, BadRequestException
+from extensions.exception_extension import BadRequestException
 
 
 def get_goals_by_user(user_id):

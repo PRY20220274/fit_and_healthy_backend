@@ -89,3 +89,11 @@ def questionnaire_not_enable():
         }, 
         400
     )
+
+def goal_completed():
+    return make_response(
+        {
+            'message': 'The goal is completed'
+        }, 
+        200
+    )
