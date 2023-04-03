@@ -1,6 +1,4 @@
 from flask_seeder import Seeder
-from domain.motivations.models.frequency import Frequency
-from domain.motivations.models.motivation_type import MotivationType
 from domain.questionnaires.models.questionnaire_category import QuestionnaireCategory
 from domain.recommendations.models.frequency_food import FrequencyFood
 from domain.questionnaires.models.questionnaire import Questionnaire
@@ -9,25 +7,9 @@ from domain.questionnaires.models.alternative import Alternative
 from domain.questionnaires.models.scale import Scale
 from domain.recommendations.models.food_recommendation import FoodRecommendation
 from domain.recommendations.models.physical_recommendation import PhysicalRecommendation
-
-class FrequencySeeder(Seeder):
-    def run(self):
-        values = ['Anual', 'Mensual', 'Quincenal', 'Semanal']
-        for index, value in enumerate(values):
-            exists = Frequency.get_one(**{'name': value})
-            if not exists:
-                frequency = Frequency(value)
-                self.db.session.add(frequency)
-
-
-class MotivationTypeSeeder(Seeder):
-    def run(self):
-        values = ['Fisica', 'Alimenticia']
-        for index, value in enumerate(values):
-            exists = MotivationType.get_one(**{'name': value})
-            if not exists:
-                motivation_type = MotivationType(value)
-                self.db.session.add(motivation_type)
+from domain.motivations.models.frequency import Frequency
+from domain.motivations.models.activity import Activity
+from domain.motivations.models.objective import Objective
 
 
 class QuestionnaireCategorySeeder(Seeder):
@@ -337,3 +319,33 @@ class FoodRecommendationSeeder(Seeder):
             if not exists:
                 recommendation = FoodRecommendation(description, min, max, frequency_id)
                 self.db.session.add(recommendation)
+
+
+class FrequencySeeder(Seeder):
+    def run(self):
+        values = ['Anual', 'Mensual', 'Quincenal', 'Semanal']
+        for index, value in enumerate(values):
+            exists = Frequency.get_one(**{'name': value})
+            if not exists:
+                frequency = Frequency(value)
+                self.db.session.add(frequency)
+
+
+class ActivitySeeder(Seeder):
+    def run(self):
+        values = ['Ligero', 'Moderado', 'Intenso']
+        for index, value in enumerate(values):
+            exists = Activity.get_one(**{'name': value})
+            if not exists:
+                activity = Activity(value)
+                self.db.session.add(activity)
+
+
+class ObjectiveSeeder(Seeder):
+    def run(self):
+        values = ['Engordar', 'Adelgazar', 'Mantener']
+        for index, value in enumerate(values):
+            exists = Objective.get_one(**{'name': value})
+            if not exists:
+                objective = Objective(value)
+                self.db.session.add(objective)

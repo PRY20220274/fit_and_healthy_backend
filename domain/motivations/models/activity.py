@@ -1,8 +1,8 @@
 from extensions.database_extension import db, BaseModel
-from domain.commons.util import get_datetime, format_date_to_save
+from domain.commons.util import get_datetime
 
-class MotivationType(db.Model, BaseModel):
-    __tablename__ = 'motivation_types'
+class Activity(db.Model, BaseModel):
+    __tablename__ = 'activities'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100), nullable=False)

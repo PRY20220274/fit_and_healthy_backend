@@ -5,7 +5,7 @@ from domain.commons.util import format_date_to_show
 
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ("id", "first_name", "last_name", "email", "birth_date")
+        fields = ("id", "first_name", "last_name", "email", "genre", "birth_date")
         model = User
     
     @post_dump()

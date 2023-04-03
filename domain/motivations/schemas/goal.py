@@ -7,20 +7,10 @@ from domain.motivations.models.goal import Goal
 
 class GoalSchema(ma.Schema):
     class Meta:
-        fields = ("id", "description", "frequency", "type", "user")
+        fields = ("id", "description", "user")
         model = Goal
 
-    frequency = ma.Method("get_frequency")
-    type = ma.Method("get_type")
     user = ma.Nested(UserSchema)
-
-    def get_frequency(self, obj):
-        frequency = obj.frequency 
-        return frequency.name
-
-    def get_type(self, obj):
-        type = obj.type 
-        return type.name
     
     @validates_schema()
     def validate_user(self, data, **kwargs):

@@ -40,6 +40,7 @@ class RegisterSchema(ma.Schema):
         last_name = data.get('last_name', None)
         email = data.get('email', None)
         password = data.get('password', None)
+        genre = data.get('genre', None)
         birth_date = data.get('birth_date', None)
         if first_name is None:
             errors['first_name'] = 'First Name is required'
@@ -57,6 +58,10 @@ class RegisterSchema(ma.Schema):
             errors['password'] = 'Password is required'
         if password == '':
             errors['password'] = 'Password must not be blank'
+        if genre is None:
+            errors['genre'] = 'Genre is required'
+        if genre == '':
+            errors['genre'] = 'Genre must not be blank'
         if birth_date is None:
             errors['birth_date'] = 'Birth Date is required'
         if birth_date == '':

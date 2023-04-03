@@ -1,5 +1,4 @@
 from domain.motivations.models.goal import Goal
-from domain.motivations.services.motivation_type import get_type
 from domain.motivations.services.frequency import get_frequency
 from extensions.exception_extension import NotFoundException, BadRequestException
 
@@ -21,7 +20,7 @@ def clean_goal(data):
         errors['frequency'] = 'Frequency is required'
     
     if type_id is not None:
-        type = get_type(type_id)
+        type = get_frequency(type_id)
     else:
         errors['type'] = 'Type is required'
 
@@ -35,8 +34,6 @@ def clean_goal(data):
 
 def save_goal(goal, user_id, frequency_id, type_id):
     goal.user_id = user_id
-    goal.frequency_id = frequency_id
-    goal.type_id = type_id
     created = goal.save()
     created.commit()
     return created
