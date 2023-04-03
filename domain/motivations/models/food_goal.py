@@ -17,5 +17,5 @@ class FoodGoal(Goal):
 
     def __init__(self, description, type):
         self.description = description
-        self.type = type
+        self.type = 'food_goal'
         self.created_at = get_datetime()

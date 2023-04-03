@@ -237,7 +237,7 @@ class AlternativeSeeder(Seeder):
                 self.db.session.add(alternative)
 
 
-class AlternativeSeeder(Seeder):
+class ScaleSeeder(Seeder):
     def run(self):
         values = [
             {
@@ -268,6 +268,51 @@ class AlternativeSeeder(Seeder):
             if not exists:
                 scale = Scale(description, min, max, questionnaire_id)
                 self.db.session.add(scale)
+
+
+class FrequencySeeder(Seeder):
+    def run(self):
+        values = ['Anual', 'Mensual', 'Quincenal', 'Semanal']
+        for index, value in enumerate(values):
+            exists = Frequency.get_one(**{'name': value})
+            if not exists:
+                frequency = Frequency(value)
+                self.db.session.add(frequency)
+
+
+class ObjectiveSeeder(Seeder):
+    def run(self):
+        values = ['Engordar', 'Adelgazar', 'Mantener']
+        for index, value in enumerate(values):
+            exists = Objective.get_one(**{'name': value})
+            if not exists:
+                objective = Objective(value)
+                self.db.session.add(objective)
+
+
+class ActivitySeeder(Seeder):
+    def run(self):
+        values = [
+            {
+                'name': 'Ligero',
+                'factor': 1.55
+            },
+            {
+                'name': 'Moderado',
+                'factor': 1.84
+            },
+            {
+                'name': 'Intenso',
+                'factor': 2.20
+            }
+        ]
+        for index, value in enumerate(values):
+            name = value.get('name')
+            factor = value.get('factor')
+            exists = Activity.get_one(**{'name': name})
+            if not exists:
+                activity = Activity(name, factor)
+                self.db.session.add(activity)
 
 
 class FoodRecommendationSeeder(Seeder):
@@ -321,22 +366,48 @@ class FoodRecommendationSeeder(Seeder):
                 self.db.session.add(recommendation)
 
 
-class FrequencySeeder(Seeder):
+class PhysicalRecommendationSeeder(Seeder):
     def run(self):
-        values = ['Anual', 'Mensual', 'Quincenal', 'Semanal']
+        values = [
+            {
+                'description': '¡Debes mejorar, tú puedes, recuerda que todo está en ti! Salir a dar un paseo siempre es beneficioso para tu salud. Te recomendamos caminar al menos 20 minutos por día. ',
+                'min_steps': 0,
+                'max_steps': 100,
+                'min_kilometers': 0,
+                'max_kilometers': 0.5,
+                'min_calories': 0,
+                'max_calories': 10
+            },
+            {
+                'description': '¡Hoy no hemos quemado muchas calorías, pero tranquilo, recuerda que mientras más camines es mejor!',
+                'min_steps': 101,
+                'max_steps': 500,
+                'min_kilometers': 0.5,
+                'max_kilometers': 1.0,
+                'min_calories': 10,
+                'max_calories': 20
+            },
+            {
+                'description': '¡Es un gran avance, sigue así y verás cómo mejora tu salud física! Es recomendable recorrer 4 kilómetros cada día. ',
+                'min_steps': 501,
+                'max_steps': 1000,
+                'min_kilometers': 1.0,
+                'max_kilometers': 1.5,
+                'min_calories': 20,
+                'max_calories': 30
+            }
+        ]
         for index, value in enumerate(values):
-            exists = Frequency.get_one(**{'name': value})
+            description = value.get('description')
+            min_steps = value.get('min_steps')
+            max_steps = value.get('max_steps')
+            min_kilometers = value.get('min_kilometers')
+            max_kilometers = value.get('max_kilometers')
+            min_calories = value.get('min_calories')
+            max_calories = value.get('max_calories')
+            exists = PhysicalRecommendation.get_one(**{'description': description})
             if not exists:
-                frequency = Frequency(value)
-                self.db.session.add(frequency)
-
-
-class ObjectiveSeeder(Seeder):
-    def run(self):
-        values = ['Engordar', 'Adelgazar', 'Mantener']
-        for index, value in enumerate(values):
-            exists = Objective.get_one(**{'name': value})
-            if not exists:
-                objective = Objective(value)
-                self.db.session.add(objective)
+                recommendation = PhysicalRecommendation(description, min_steps, max_steps, 
+                                                        min_kilometers, max_kilometers, min_calories, max_calories)
+                self.db.session.add(recommendation)
 

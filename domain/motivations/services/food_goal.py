@@ -62,7 +62,7 @@ def get_calories(activity, user):
             energy_expenditure = 0
     else:
         energy_expenditure = 0
-    caloric_expenditure = float(activity.factor) * energy_expenditure
+    caloric_expenditure = activity.factor * energy_expenditure
     return round(caloric_expenditure, 2)
 
 
@@ -85,7 +85,7 @@ def get_description(objective, calories):
 def save_goal(user, objective, activity):
     calories = get_calories(activity, user)
     description = get_description(objective, calories)
-    goal = FoodGoal(description, 'food_goal')
+    goal = FoodGoal(description)
 
     goal.user_id = user.id
     goal.objective_id = objective.id

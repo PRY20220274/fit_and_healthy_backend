@@ -13,7 +13,7 @@ class User(db.Model, BaseModel):
     birth_date = db.Column(db.Date, nullable=True)
     weight = db.Column(db.Float)
     height = db.Column(db.Float)
-    state = db.Column(db.Integer, nullable=False)
+    state = db.Column(db.Boolean, nullable=False, default=True)
     created_at = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, first_name, last_name,  email, password, genre, birth_date):
@@ -23,7 +23,6 @@ class User(db.Model, BaseModel):
         self.password = password
         self.genre = genre
         self.birth_date = format_date_to_save(birth_date)
-        self.state = 1
         self.created_at = get_datetime()
 
     def format_date(self):

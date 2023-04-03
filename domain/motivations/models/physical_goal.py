@@ -17,6 +17,11 @@ class PhysicalGoal(Goal):
         'polymorphic_identity': 'physical_goal',
     }
 
-    def __init__(self, description):
+    def __init__(self, description, steps, kilometers, cardio_points, calories):
         self.description = description
+        self.type = 'physical_goal'
+        self.steps = steps
+        self.kilometers = kilometers
+        self.cardio_points = cardio_points
+        self.calories = calories
         self.created_at = get_datetime()
