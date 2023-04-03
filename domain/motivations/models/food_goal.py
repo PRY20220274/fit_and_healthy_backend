@@ -1,7 +1,8 @@
-from extensions.database_extension import db, BaseModel
+from extensions.database_extension import db
+from domain.motivations.models.goal import Goal
 from domain.commons.util import get_datetime
 
-class FoodGoal(db.Model, BaseModel):
+class FoodGoal(Goal):
     __tablename__ = 'food_goals'
 
     id = db.Column(db.Integer, db.ForeignKey('goals.id'), primary_key=True)
@@ -14,6 +15,7 @@ class FoodGoal(db.Model, BaseModel):
         'polymorphic_identity': 'food_goal',
     }
 
-    def __init__(self, description):
+    def __init__(self, description, type):
         self.description = description
+        self.type = type
         self.created_at = get_datetime()

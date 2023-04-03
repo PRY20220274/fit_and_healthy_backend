@@ -1,7 +1,8 @@
-from extensions.database_extension import db, BaseModel
+from extensions.database_extension import db
+from domain.motivations.models.goal import Goal
 from domain.commons.util import get_datetime, format_date_to_save
 
-class PhysicalGoal(db.Model, BaseModel):
+class PhysicalGoal(Goal):
     __tablename__ = 'physical_goals'
 
     id = db.Column(db.Integer, db.ForeignKey('goals.id'), primary_key=True)
