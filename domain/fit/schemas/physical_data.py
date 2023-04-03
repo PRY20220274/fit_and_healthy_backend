@@ -6,7 +6,7 @@ from domain.commons.util import format_datetime_to_show
 class PhysicalDataSchema(ma.Schema):
     class Meta:
         fields = ("id", "steps", "calories", "cardio_points", "heart_rate", "breathing_rate", 
-                  "kilometers_traveled", "width", "height", "created_at")
+                  "kilometers_traveled", "created_at")
         model = PhysicalData
     
     @post_dump()

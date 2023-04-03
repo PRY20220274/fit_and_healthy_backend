@@ -7,9 +7,7 @@ def create_physical_data(data, user_id):
         data['cardioPoints'], 
         data['heartRate'], 
         data['breathingRate'],
-        data['kilometersTraveled'],
-        data['width'],
-        data['height']
+        data['kilometersTraveled']
     )
     physical_data.user_id = user_id
     return physical_data

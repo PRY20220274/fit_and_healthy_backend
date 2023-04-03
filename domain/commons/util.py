@@ -1,5 +1,5 @@
 from flask_jwt_extended import current_user
-from datetime import datetime
+from datetime import datetime, date
 
 def get_datetime():
     date = datetime.now()
@@ -47,3 +47,9 @@ def get_hour():
     now = datetime.now()
     actual_hour = now.strftime("%H:%M:%S")
     return actual_hour
+
+def is_date(value):
+    if isinstance(value, date):
+        return True
+    else: 
+        return False

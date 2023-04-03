@@ -1,5 +1,5 @@
 from extensions.database_extension import db, BaseModel
-from domain.commons.util import get_datetime, format_date_to_save
+from domain.commons.util import get_datetime, format_date_to_save, is_date
 
 class User(db.Model, BaseModel):
     __tablename__ = 'users'
@@ -11,6 +11,8 @@ class User(db.Model, BaseModel):
     password = db.Column(db.String(200), nullable=False)
     genre = db.Column(db.String(1), nullable=False)
     birth_date = db.Column(db.Date, nullable=True)
+    weight = db.Column(db.Float)
+    height = db.Column(db.Float)
     state = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
 
@@ -25,4 +27,6 @@ class User(db.Model, BaseModel):
         self.created_at = get_datetime()
 
     def format_date(self):
-        self.birth_date = format_date_to_save(self.birth_date)
+        valid = is_date(self.birth_date)
+        if not is_date(self.birth_date):
+            self.birth_date = format_date_to_save(self.birth_date)

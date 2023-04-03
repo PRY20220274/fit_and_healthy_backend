@@ -6,7 +6,7 @@ class Goal(db.Model, BaseModel):
     __tablename__ = 'goals'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    description = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text, nullable=False)
     completed = db.Column(db.Boolean, nullable=False, default=False)
     created_at = db.Column(db.DateTime, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

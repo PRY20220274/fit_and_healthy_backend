@@ -6,6 +6,7 @@ class Activity(db.Model, BaseModel):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100), nullable=False)
+    factor = db.Column(db.Numeric(10, 2))
     created_at = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, name):

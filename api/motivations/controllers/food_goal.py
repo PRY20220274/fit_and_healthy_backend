@@ -29,6 +29,6 @@ class GoalListResource(Resource):
     def post(self):
         objective, activity = build_goal(request.get_json())
         user = get_user()
-        goal = save_goal(user.id, objective.id, activity.id)
+        goal = save_goal(user, objective, activity)
         response = self.schema.dump(goal)
         return response, 201

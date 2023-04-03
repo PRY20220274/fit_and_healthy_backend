@@ -331,16 +331,6 @@ class FrequencySeeder(Seeder):
                 self.db.session.add(frequency)
 
 
-class ActivitySeeder(Seeder):
-    def run(self):
-        values = ['Ligero', 'Moderado', 'Intenso']
-        for index, value in enumerate(values):
-            exists = Activity.get_one(**{'name': value})
-            if not exists:
-                activity = Activity(value)
-                self.db.session.add(activity)
-
-
 class ObjectiveSeeder(Seeder):
     def run(self):
         values = ['Engordar', 'Adelgazar', 'Mantener']
@@ -349,3 +339,4 @@ class ObjectiveSeeder(Seeder):
             if not exists:
                 objective = Objective(value)
                 self.db.session.add(objective)
+
