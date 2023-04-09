@@ -39,7 +39,7 @@ def handle_exception(error: HTTPException):
         'error': error.__class__.__name__,
         'message': error.description
     }
-    return response, error.code
+    return response, 400
 
 
 def handle_no_token(error):
@@ -47,7 +47,7 @@ def handle_no_token(error):
         'error': error.__class__.__name__,
         'message': 'No token found'
     }
-    return response, error.code
+    return response, 400
 
 
 def handle_invalid_header(error):
@@ -55,7 +55,7 @@ def handle_invalid_header(error):
         'error': error.__class__.__name__,
         'message': 'Token is invalid'
     }
-    return response, error.code
+    return response, 400
 
 
 def handle_expires_token(error):
@@ -63,7 +63,7 @@ def handle_expires_token(error):
         'error': error.__class__.__name__,
         'message': 'The token has expired'
     }
-    return response, error.code
+    return response, 400
 
 
 def register_exception_handler(app):
