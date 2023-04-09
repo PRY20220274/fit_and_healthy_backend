@@ -4,7 +4,7 @@ from domain.fit.services.physical_data import create_physical_data
 def save_access(data, user_id):
     exists = get_access_user(user_id)
     if not exists:
-        access = create_access(data)
+        access = create_access(data, user_id)
         created = access.save()
         created.commit()
         return True
