@@ -24,7 +24,7 @@ def get_recommendation(calories):
 
 
 def add_recommendation_to_user(user_id, calories):
-    recommendation = get_recommendation(score, calories)
+    recommendation = get_recommendation(calories)
     created = PhysicalUserRecommendation(user_id, recommendation.id)
     created.save()
     created.commit()
