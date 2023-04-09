@@ -40,6 +40,9 @@ def get_actual_frequency():
 
 def is_enable(user):
     last_solved = get_last_solved(user.id)
+    if last_solved is None:
+        return True
+
     last_solved_date = last_solved.created_at.strftime("%Y-%m-%d")
     last_solved_frequency = last_solved.questionnaire.frequency
 

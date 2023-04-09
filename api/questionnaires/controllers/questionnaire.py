@@ -22,7 +22,6 @@ class QuestionnaireSearchResource(Resource):
         params = request.args
         category_id = get_param(params, 'category_id')
         enable = is_enable(user)
-        print(enable, flush=True)
         if enable:
             questionnaire = get_questionnaire_by_category(category_id)
             response = self.schema.dump(questionnaire)
