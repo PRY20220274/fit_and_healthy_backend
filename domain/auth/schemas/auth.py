@@ -30,7 +30,7 @@ class LoginSchema(ma.Schema):
 
 class RegisterSchema(ma.Schema):
     class Meta:
-        fields = ("id", "first_name", "last_name", "email", "password", "birth_date")
+        fields = ("id", "first_name", "last_name", "email", "password", "birth_date", "genre")
         model = User
 
     @validates_schema()
