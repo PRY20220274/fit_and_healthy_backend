@@ -5,23 +5,15 @@ class Config(object):
 
 
 class ProductionConfig(Config):
-    USER = "monicovid"
-    PASSWORD = "monicovid"
-    SERVER = "104.197.107.90"
-    DATABASE = "fit_and_healthy"
+    USER = "fitandhealthyadmin"
+    PASSWORD = "RosarioRichard#98"
+    SERVER = "fitandhealthy.mysql.database.azure.com"
+    DATABASE = "fitandhealthy"
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{USER}:{PASSWORD}@{SERVER}/{DATABASE}'
     SQLALCHEMY_ECHO = False
     PROPAGATE_EXCEPTIONS = True
     SECRET_KEY = 'super secret'
-    MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 587
-    MAIL_USE_TLS = True
-    MAIL_USE_SSL = False
-    MAIL_DEFAULT_SENDER = 'monicovid.no.reply@gmail.com'
-    MAIL_USERNAME = 'monicovid.no.reply@gmail.com'
-    MAIL_PASSWORD = 'bgzdagkdujcjxmag'
-    SCHEDULER_API_ENABLED = True
 
 
 class DevelopmentConfig(Config):
