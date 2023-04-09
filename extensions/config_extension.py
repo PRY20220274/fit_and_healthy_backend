@@ -35,5 +35,5 @@ class TestingConfig(Config):
 
 
 def register_config(app):
-    config = ProductionConfig()
+    config = DevelopmentConfig()
     app.config.from_object(config)
