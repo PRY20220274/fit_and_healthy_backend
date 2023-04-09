@@ -9,5 +9,6 @@ physical_goal_response = physical_goal_namespace.model('PhysicalGoalResponse', {
     'kilometers': fields.Integer,
     'calories': fields.Integer,
     'cardio_points': fields.Integer,
-    'frequency': fields.String
+    'frequency': fields.String,
+    'completed': fields.String
 })
