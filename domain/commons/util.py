@@ -34,7 +34,7 @@ def get_variable(data, search, default):
 
 
 def get_fog():
-    return 'http://localhost:4040/api'
+    return 'https://fitandhealthyiot.azurewebsites.net/api'
 
 
 def get_date():
