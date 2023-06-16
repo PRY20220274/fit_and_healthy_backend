@@ -32,7 +32,7 @@ class UserDetailResource(Resource):
         return response, 200
     
 
-@user_namespace.route('/<int:id>/weights')
+@user_namespace.route('/weights')
 class WeightListResource(Resource):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -41,6 +41,7 @@ class WeightListResource(Resource):
     @user_namespace.response(code=200, description='Success', model=weight_response)
     @user_namespace.response(code=404, description='User not found')
     def get(self):
-        weights = get_user_weight(id)
+        user = get_user()
+        weights = get_user_weight(user.id)
         response = self.schema.dump(weights)
         return response, 200
