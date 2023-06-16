@@ -2,6 +2,7 @@ from domain.motivations.models.food_goal import FoodGoal
 from domain.motivations.services.objective import get_objective
 from domain.motivations.services.activity import get_activity
 from domain.accounts.services.user import get_user_age
+from domain.accounts.services.weight import get_last_weight
 from extensions.exception_extension import BadRequestException
 
 
@@ -36,7 +37,7 @@ def build_goal(data):
 
 def get_calories(activity, user):
     genre = user.genre
-    weight = user.weight
+    weight = get_last_weight(user.id);
     age = get_user_age(user)
     energy_expenditure = 0
     if age >= 18 and age <= 30:

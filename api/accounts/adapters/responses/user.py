@@ -9,3 +9,10 @@ user_response = user_namespace.model('UserResponse', {
     'last_name': fields.String,
     'birth_date': fields.String
 })
+
+
+weight_response = user_namespace.model('WeightResponse', {
+    'id': fields.Integer,
+    'value': fields.Integer,
+    'created_at': fields.String
+})

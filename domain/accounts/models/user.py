@@ -11,7 +11,7 @@ class User(db.Model, BaseModel):
     password = db.Column(db.String(200), nullable=False)
     genre = db.Column(db.String(1), nullable=False)
     birth_date = db.Column(db.Date, nullable=True)
-    weight = db.Column(db.Float)
+    weights = db.relationship('Weight', backref='user', lazy=True)
     height = db.Column(db.Float)
     state = db.Column(db.Boolean, nullable=False, default=True)
     created_at = db.Column(db.DateTime, nullable=False)

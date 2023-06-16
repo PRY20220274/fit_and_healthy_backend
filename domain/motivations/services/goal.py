@@ -9,5 +9,5 @@ def get_goal(id):
 
 
 def complete_goal(goal):
-    goal.completed = True
+    goal.completed = not goal.completed
     return goal.update()
